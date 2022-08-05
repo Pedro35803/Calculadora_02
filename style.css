@@ -2,12 +2,102 @@
     --color-primary: #F0F0F0;
     --color-secondary: #D4D2D5;
     --color-tertiary: #9A97B8;
-    --color-quartetary: #F0F0F0;
+    --color-quartetary: #6C698D;
+    --bg-calculator: #fff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+    font-family: 'Mosk', sans-serif;
+}
+
+@font-face {
+    font-family: 'Mosk';
+    src: url(fonts/Mosk_Bold_700.ttf) format('truetype');
 }
 
 body {
+    background-color: var(--color-primary);
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.calculator-panel {
+    padding: 25px 25px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.calculator,
+.calculator-panel {
+    border-radius: 40px;
+}
+
+.calculator {
+    background-color: var(--color-primary);
+    border: 6px solid var(--color-tertiary);
+    color: var(--color-quartetary);
+
+    font-weight: bolder;
+    height: 450px;
+    width: 325px;
+}
+
+.calculator-panel, 
+.panel-expression {
+    background-color: var(--color-primary);
+}
+
+/* Parte superior da calculadora, o painel */
+
+.calculator-panel {
+    position: relative;
+    box-shadow: 0px 9px 9px -5px rgba(154, 151, 184, 0.5); 
+    height: 175px;
+}
+
+.panel-themes {
+    margin-bottom: 15px;
+}
+
+.panel-expression {
+    color: var(--color-quartetary);
+    text-align: right;
+    font-weight: bolder;
+    width: 100%;
+}
+
+.panel-expression {
+    font-size: 22px;
+    height: 25px;
+}
+
+.panel-resultado {
+    width: 100%;
+    font-size: 44px;
+    text-align: right;
+}
+
+.panel-resultado::after {
+    background-color: var(--color-secondary);
+    content: '';
+    display: block;
+
+    height: 5px;
+    width: 135px;
+
+    border-radius: 100px;
+    margin: 10px auto 7.5px;
+}
+
+.calculator-buttons {
+    border-radius: 0px 0 40px 40px;
+    height: 65%;
 }

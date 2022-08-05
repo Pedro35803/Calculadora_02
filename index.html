@@ -5,20 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Calculadora</title>
+    <title>calculadora</title>
 </head>
 <body>
-    <main class="calculadora">
-        <section class="calculadora-panel">
-            <label>
-                <input type="radio">
-                <input type="radio">
-            </label>
-            <input type="text" value="15+35" disabled>
-            <div class="resultado">50</div>
+    <main class="calculator">
+        <section class="calculator-panel">
+            <section class="panel-themes">
+                <label>
+                    <input type="radio" name="theme" checked>
+                </label>
+
+                <label>
+                    <input type="radio" name="theme">
+                </label>
+            </section>
+
+            <input class="panel-expression" type="text" value="15+35" disabled>
+            <span class="panel-resultado">50</span>
         </section>
 
-        <section class="calculadora-buttons">
+        <section class="calculator-buttons">
             <button class="button button-number">9</button>
             <button class="button button-number">8</button>
             <button class="button button-number">7</button>
