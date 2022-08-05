@@ -1,0 +1,13 @@
+:root {
+    --color-primary: #F0F0F0;
+    --color-secondary: #D4D2D5;
+    --color-tertiary: #9A97B8;
+    --color-quartetary: #F0F0F0;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
