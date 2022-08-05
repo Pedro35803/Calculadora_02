@@ -4,6 +4,8 @@
     --color-tertiary: #9A97B8;
     --color-quartetary: #6C698D;
     --bg-calculator: #fff;
+
+    --temp-animation: 0.4s ease;
 }
 
 * {
@@ -120,6 +122,7 @@ body {
     padding: 5px;
     border-radius: 50px;
     cursor: pointer;
+    transition: background var(--temp-animation);
 }
 
 .button-function {
@@ -127,9 +130,24 @@ body {
     color: var(--color-primary);
 }
 
+/* .button-function:hover {
+    background-color: var(--color-quartetary);
+} */
+
+.button-function:hover {
+    background-color: transparent;
+    border: 2px solid var(--color-tertiary);
+    color: var(--color-tertiary);
+}
+
 .button-number {
     background-color: var(--color-secondary);
     color: var(--color-quartetary);
+}
+
+.button-number:hover {
+    background-color: transparent;
+    border: 2px solid var(--color-secondary);
 }
 
 .button-equals {
