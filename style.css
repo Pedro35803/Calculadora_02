@@ -46,8 +46,8 @@ body {
     color: var(--color-quartetary);
 
     font-weight: bolder;
-    height: 450px;
-    width: 325px;
+    height: 525px;
+    width: 300px;
 }
 
 .calculator-panel, 
@@ -58,9 +58,8 @@ body {
 /* Parte superior da calculadora, o painel */
 
 .calculator-panel {
-    position: relative;
     box-shadow: 0px 9px 9px -5px rgba(154, 151, 184, 0.5); 
-    height: 175px;
+    height: min(35%, 175px);
 }
 
 .panel-themes {
@@ -100,4 +99,39 @@ body {
 .calculator-buttons {
     border-radius: 0px 0 40px 40px;
     height: 65%;
+    display: grid;
+    grid-template: 50px 50px 50px 50px 50px / 50px 50px 50px 50px;
+    place-content: center;
+    grid-gap: 10px;
+    grid-template-areas:
+    ". . . ."
+    ". . . ."
+    ". . . ."
+    ". . . ."
+    ". . equals equals";
+}
+
+.calculator-buttons *::selection {
+    background-color: transparent;
+}
+
+.button {
+    font-size: 1.75rem;
+    padding: 5px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.button-function {
+    background-color: var(--color-tertiary);
+    color: var(--color-primary);
+}
+
+.button-number {
+    background-color: var(--color-secondary);
+    color: var(--color-quartetary);
+}
+
+.button-equals {
+    grid-area: equals;
 }
