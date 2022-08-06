@@ -36,7 +36,7 @@
     left: 0;
 }
 
-.theme:checked:before {
+.theme:checked::before {
     left: 24px;
 }
 
