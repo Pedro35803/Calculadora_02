@@ -1,0 +1,22 @@
+:root {
+    --color-primary: #F0F0F0;
+    --color-secondary: #D4D2D5;
+    --color-tertiary: #9A97B8;
+    --color-quartetary: #6C698D;
+    --bg-calculator: #fff;
+
+    --temp-animation: 0.4s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+    font-family: 'Mosk', sans-serif;
+}
+
+@font-face {
+    font-family: 'Mosk';
+    src: url(../fonts/Mosk_Bold_700.ttf) format('truetype');
+}

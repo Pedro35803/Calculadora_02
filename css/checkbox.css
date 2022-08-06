@@ -1,0 +1,47 @@
+@import url(config_global.css);
+
+.panel-themes {
+    position: relative;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.panel-themes,
+.theme {
+    width: 55px;
+    cursor: pointer;
+}
+
+.theme {
+    background-color: var(--color-secondary);
+    appearance: none;
+    position: absolute;
+}
+
+.theme,
+.theme::before {
+    border-radius: 20px;
+    height: 20px;
+    position: absolute;
+    transition: var(--temp-animation);
+}
+
+.theme::before {
+    background-color: var(--color-quartetary);
+    content: '';
+    width: 30px;
+    top: 0;
+    left: 0;
+}
+
+.theme:checked:before {
+    left: 24px;
+}
+
+.themes-img {
+    height: 12px;
+    width: 12px;
+    z-index: 2;
+}

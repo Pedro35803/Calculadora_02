@@ -1,25 +1,5 @@
-:root {
-    --color-primary: #F0F0F0;
-    --color-secondary: #D4D2D5;
-    --color-tertiary: #9A97B8;
-    --color-quartetary: #6C698D;
-    --bg-calculator: #fff;
-
-    --temp-animation: 0.4s ease;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    box-sizing: border-box;
-    font-family: 'Mosk', sans-serif;
-}
-
-@font-face {
-    font-family: 'Mosk';
-    src: url(fonts/Mosk_Bold_700.ttf) format('truetype');
-}
+@import url(config_global.css);
+@import url(checkbox.css);
 
 body {
     background-color: var(--color-primary);
@@ -64,20 +44,13 @@ body {
     height: min(35%, 175px);
 }
 
-.panel-themes {
-    margin-bottom: 15px;
-}
-
 .panel-expression {
     color: var(--color-quartetary);
     text-align: right;
-    font-weight: bolder;
-    width: 100%;
-}
-
-.panel-expression {
     font-size: 22px;
+    font-weight: bolder;
     height: 25px;
+    width: 100%;
 }
 
 .panel-resultado {
@@ -97,6 +70,8 @@ body {
     border-radius: 100px;
     margin: 10px auto 7.5px;
 }
+
+/* Parte infelior da calculadora, os botões  */
 
 .calculator-buttons {
     border-radius: 0px 0 40px 40px;
@@ -129,10 +104,6 @@ body {
     background-color: var(--color-tertiary);
     color: var(--color-primary);
 }
-
-/* .button-function:hover {
-    background-color: var(--color-quartetary);
-} */
 
 .button-function:hover {
     background-color: transparent;
