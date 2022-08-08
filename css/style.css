@@ -83,7 +83,7 @@ body.theme_dark .button-number:hover {
 
 .panel-result {
     width: 100%;
-    height: 72.5px;
+    overflow: auto;
     font-size: 44px;
     text-align: right;
 }

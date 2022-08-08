@@ -13,31 +13,75 @@ const result = document.querySelector("#result");
 const btNumbers = document.querySelectorAll(".button-number");
 const btFunctions = document.querySelectorAll(".button-function");
 
-let list = [];
+let listFunctions = ["+", "-", "x", "/", "( )", "%"];
+let insideParentheses = false;
+let lastOperator = "";
 
 btNumbers.forEach(btNumber => btNumber.addEventListener("click", () => {
-        const buttonContent = btNumber.textContent;
-        concatedNumber(buttonContent);
-    }
-));
+    const buttonContent = btNumber.textContent;
+    concatedNumber(buttonContent);
+}));
 
 btFunctions.forEach(btFunction => btFunction.addEventListener("click", () => {
-        const buttonContent = btFunction.textContent;
+    const buttonContent = btFunction.textContent;
+    if (buttonContent == "C") {
+        clear();
+    } else if (buttonContent == "=") {
+        calc();
+    } else {
+        if (buttonContent == "( )") {
+            insideParentheses = !insideParentheses;
+            expression.value += " x ";
+        }
         concatedFunction(buttonContent);
     }
-));
+}));
 
 function concatedNumber(number) {
-    expression.value += number;
-    const sizeList = list.length - 1;
-    list[sizeList] += number;
+    let valueExpres = expression.value;
+    const indexEnd = valueExpres.length - 1;
+    
+    if (insideParentheses) {
+        valueExpres = valueExpres.substring(0, indexEnd - 2);
+        valueExpres += " " + number + ") ";
+    } else {
+        expression.value += number;
+    }
+
+    lastOperator = "";
 }
 
 function concatedFunction(string) {
-    const sizeList = list.length - 1;
-    if (list[sizeList] != "" && Number(list[sizeList]) != NaN) {
-        expression.value += " " + string + " ";
-        list.push(string);
-        list.push("");
+    let valueExpres = expression.value;
+    const indexEnd = valueExpres.length - 1;
+
+    if (insideParentheses) {
+        valueExpres = valueExpres.substring(0, indexEnd - 2);
+        valueExpres += " " + string + ") ";
+    } else if (string == "-" && lastOperator != "-") {
+        valueExpres += "-";
+        lastOperator = "-";
+    } else if (lastOperator == "" && indexEnd + 1 != 0) {
+        valueExpres += " " + string + " ";
+        lastOperator = string;
+    } else if (listFunctions.indexOf(lastOperator) != -1) {
+        valueExpres = valueExpres.substring(0, indexEnd - 2);
+        valueExpres += " " + string + " ";
     }
+
+    expression.value = valueExpres.toLowerCase();
+}
+
+function clear() {
+    expression.value = "";
+    result.textContent = "";
+    lastOperator = "";
+}
+
+function calc() {
+    let valueExpres = expression.value;
+    valueExpres = valueExpres.replace(/x/g, "*");
+    // const res = eval(valueExpres);
+    const res = Function("return " + valueExpres)();
+    result.textContent = res;
 }

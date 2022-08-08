@@ -21,3 +21,7 @@
     font-family: 'Mosk';
     src: url(../fonts/Mosk_Bold_700.ttf) format('truetype');
 }
+
+*::-webkit-scrollbar {
+    display: none;
+}
