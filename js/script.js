@@ -23,15 +23,22 @@ btNumbers.forEach(btNumber => btNumber.addEventListener("click", () => {
 }));
 
 btFunctions.forEach(btFunction => btFunction.addEventListener("click", () => {
-    const buttonContent = btFunction.textContent;
+    let buttonContent = btFunction.textContent;
     if (buttonContent == "C") {
         clear();
     } else if (buttonContent == "=") {
         calc();
     } else {
         if (buttonContent == "( )") {
+            if (!insideParentheses) {
+                if (lastOperator == "" && expression.value != "") {
+                    expression.value += " x";
+                }
+                buttonContent = "(";
+            } else {
+                buttonContent = "";
+            }
             insideParentheses = !insideParentheses;
-            expression.value += " x ";
         }
         concatedFunction(buttonContent);
     }
@@ -42,8 +49,9 @@ function concatedNumber(number) {
     const indexEnd = valueExpres.length - 1;
     
     if (insideParentheses) {
-        valueExpres = valueExpres.substring(0, indexEnd - 2);
-        valueExpres += " " + number + ") ";
+        valueExpres = valueExpres.substring(0, indexEnd - 1);
+        valueExpres += number + ") ";
+        expression.value = valueExpres;
     } else {
         expression.value += number;
     }
@@ -56,11 +64,11 @@ function concatedFunction(string) {
     const indexEnd = valueExpres.length - 1;
 
     if (insideParentheses) {
-        valueExpres = valueExpres.substring(0, indexEnd - 2);
+        // valueExpres = valueExpres.substring(0, indexEnd - 2);
         valueExpres += " " + string + ") ";
     } else if (string == "-" && lastOperator != "-") {
-        valueExpres += "-";
-        lastOperator = "-";
+        valueExpres += string;
+        lastOperator = string;
     } else if (lastOperator == "" && indexEnd + 1 != 0) {
         valueExpres += " " + string + " ";
         lastOperator = string;
