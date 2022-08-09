@@ -6,7 +6,7 @@ const result = document.querySelector("#result");
 const btNumbers = document.querySelectorAll(".button-number");
 const btFunctions = document.querySelectorAll(".button-function");
 
-let listFunctions = ["+", "-", "x", "/", "( )", "%"];
+let listFunctions = ["+", "-", "x", "/", "%", "( )", `)`];
 let insideParentheses = false;
 let lastOperator = "";
 let numberTemp = "";
@@ -62,8 +62,14 @@ function concatedFunction(string) {
     const indexEnd = valueExpres.length - 1;
 
     if (insideParentheses) {
-        // valueExpres = valueExpres.substring(0, indexEnd - 2);
-        valueExpres += " " + string + ") ";
+        const possuiParentesesAntes = listFunctions.indexOf(valueExpres[indexEnd]) == -1;
+
+        if (listFunctions.indexOf(lastOperator) == -1 && possuiParentesesAntes) {
+            valueExpres = valueExpres.substring(0, indexEnd - 1);
+        }
+        
+        valueExpres += " " + string + " ) ";
+        lastOperator = string;
     } else if (string == "-" && lastOperator != "-") {
         valueExpres += string;
         lastOperator = string;
@@ -89,9 +95,10 @@ function testConcated(valueExpres, valuePrev) {
 }
 
 function clear() {
+    lastOperator = "";
     expression.value = "";
     result.textContent = "";
-    lastOperator = "";
+    insideParentheses = false;
 }
 
 function calc() {
@@ -100,4 +107,5 @@ function calc() {
 
     const res = Function("return " + valueExpres)();
     result.textContent = res;
+    insideParentheses = false;
 }
