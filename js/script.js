@@ -9,6 +9,7 @@ const btFunctions = document.querySelectorAll(".button-function");
 let listFunctions = ["+", "-", "x", "/", "( )", "%"];
 let insideParentheses = false;
 let lastOperator = "";
+let numberTemp = "";
 
 btNumbers.forEach(btNumber => btNumber.addEventListener("click", () => {
     const buttonContent = btNumber.textContent;
@@ -40,14 +41,18 @@ btFunctions.forEach(btFunction => btFunction.addEventListener("click", () => {
 function concatedNumber(number) {
     let valueExpres = expression.value;
     const indexEnd = valueExpres.length - 1;
-    
+    const valuePrev = valueExpres;
+
     if (insideParentheses) {
         valueExpres = valueExpres.substring(0, indexEnd - 1);
         valueExpres += number + ") ";
-        expression.value = valueExpres;
+        valueExpres = testConcated(valueExpres, valuePrev);
     } else {
-        expression.value += number;
+        valueExpres += number;
+        valueExpres = testConcated(valueExpres, valuePrev);
     }
+
+    expression.value = valueExpres;
 
     lastOperator = "";
 }
@@ -73,6 +78,16 @@ function concatedFunction(string) {
     expression.value = valueExpres.toLowerCase();
 }
 
+function testConcated(valueExpres, valuePrev) {
+    const valueCalc = valueExpres.replace(/x/g, "*");
+    try {
+        Function("return " + valueCalc)();
+        return valueExpres;
+    } catch {
+        return valuePrev;
+    }
+}
+
 function clear() {
     expression.value = "";
     result.textContent = "";
@@ -82,7 +97,7 @@ function clear() {
 function calc() {
     let valueExpres = expression.value;
     valueExpres = valueExpres.replace(/x/g, "*");
-    // const res = eval(valueExpres);
+
     const res = Function("return " + valueExpres)();
     result.textContent = res;
 }
