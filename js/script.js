@@ -1,10 +1,3 @@
-// change tema da pagina
-
-document.querySelector("#change_theme").addEventListener("click", () => {
-    const page = document.querySelector("body");
-    page.classList.toggle("theme_dark");
-});
-
 // Logica da calculadora
 
 const expression = document.querySelector("#expression");
